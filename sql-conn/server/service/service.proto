@@ -1,0 +1,22 @@
+syntax = "proto3";
+package service;
+option go_package = "github.com/MaoScut/go-debug/sqlconn/server/service";
+import "google/api/annotations.proto";
+
+message User {
+  string id = 1;
+  string name = 2;
+}
+
+message ListUserReq {}
+message ListUserRes {
+  repeated User user = 1;
+}
+
+service UserService {
+  rpc ListUser(ListUserReq) returns (ListUserRes) {
+    option (google.api.http) = {
+        get: "/v1/users"
+      };
+  }
+}
